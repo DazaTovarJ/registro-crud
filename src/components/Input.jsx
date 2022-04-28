@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 function Input({
   type,
   name,
+  value,
   label,
   placeholder,
   handleChange,
@@ -14,7 +15,7 @@ function Input({
 
   if (type === "select") {
     inputElement = (
-      <select name={name} id={name} onChange={handleChange}>
+      <select name={name} id={name} value={value} onChange={handleChange}>
         <option value="">Seleccione...</option>
         {data.map((item, i) => (
           <option key={i} value={item}>
@@ -28,6 +29,7 @@ function Input({
       <input
         type={type}
         name={name}
+        value={value}
         placeholder={placeholder}
         onChange={handleChange}
         {...constraints}
@@ -49,8 +51,9 @@ Input.defaultProps = {
 
 Input.propTypes = {
   type: PropTypes.string,
-  name: PropTypes.string,
-  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   handleChange: PropTypes.func,
   constraints: PropTypes.object,

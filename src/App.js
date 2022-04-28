@@ -3,15 +3,26 @@ import Form from "./components/Form";
 import Table from "./components/Table";
 
 function App() {
-  const [data, setData] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [dataToUpdate, setDataToUpdate] = useState(null);
 
-  const createData = data => {};
+  const createData = data => {
+    data.id = Date.now();
+
+    setUsers([...users, data]);
+  };
+  const updateData = data => {};
 
   return (
     <div>
       <h1>Aplicación de Registro de Usuarios</h1>
-      <Form />
-      <Table data={data} />
+      <Form
+        createData={createData}
+        updateData={updateData}
+        dataToUpdate={dataToUpdate}
+        setData={setDataToUpdate}
+      />
+      <Table data={users} />
     </div>
   );
 }
