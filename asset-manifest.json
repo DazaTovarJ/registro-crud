@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/registro-crud/static/css/main.e6c13ad2.css",
+    "main.js": "/registro-crud/static/js/main.b0fd6b9c.js",
+    "index.html": "/registro-crud/index.html",
+    "main.e6c13ad2.css.map": "/registro-crud/static/css/main.e6c13ad2.css.map",
+    "main.b0fd6b9c.js.map": "/registro-crud/static/js/main.b0fd6b9c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.b0fd6b9c.js"
+  ]
+}
