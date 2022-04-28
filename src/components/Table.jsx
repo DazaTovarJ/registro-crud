@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import TableRow from "./TableRow";
 
-function Table({ data }) {
+function Table({ data, deleteData }) {
   let renderData = null;
   if (data.length === 0) {
     renderData = <p>No hay datos para mostrar. Crea un registro</p>;
@@ -22,7 +22,7 @@ function Table({ data }) {
         </thead>
         <tbody>
           {data.map(user => (
-            <TableRow key={user.id} user={user} />
+            <TableRow key={user.id} user={user} deleteData={deleteData} />
           ))}
         </tbody>
       </table>
@@ -38,6 +38,7 @@ function Table({ data }) {
 
 Table.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  deleteData: PropTypes.func,
 };
 
 export default Table;

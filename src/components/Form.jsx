@@ -1,23 +1,18 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Input from "./Input";
-import Message from "./Message";
 
-function Form({ createData, updateData, dataToUpdate, setDataToUpdate }) {
-  const defaultData = {
-    id: null,
-    nombre: "",
-    apellido: "",
-    correo: "",
-    curso: "",
-    tipo: "",
-  };
+const defaultData = {
+  id: null,
+  nombre: "",
+  apellido: "",
+  correo: "",
+  curso: "",
+  tipo: "",
+};
 
-  const defaultMessage = { type: "", msg: "" };
-
+function Form({ createData, updateData, setMessage }) {
   const [formData, setFormData] = useState(defaultData);
-  const [submitted, setSubmitted] = useState(false);
-  const [message, setMessage] = useState(defaultMessage);
 
   const handleChange = e => {
     setFormData({
@@ -28,7 +23,6 @@ function Form({ createData, updateData, dataToUpdate, setDataToUpdate }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setSubmitted(true);
 
     if (!formData.nombre) {
       setMessage({ type: "error", msg: "El nombre es requerido" });
@@ -55,9 +49,7 @@ function Form({ createData, updateData, dataToUpdate, setDataToUpdate }) {
       return;
     }
 
-    formData.id === null ? createData(formData) : updateData(formData);
-
-    setMessage({ type: "success", msg: "Datos enviados satisfactoriamente" });
+    createData(formData);
 
     setTimeout(() => {
       handleReset();
@@ -65,21 +57,16 @@ function Form({ createData, updateData, dataToUpdate, setDataToUpdate }) {
   };
 
   const handleReset = () => {
-    setSubmitted(false);
     setFormData(defaultData);
-    setDataToUpdate(null);
-    setMessage(defaultMessage);
+    setMessage(null);
   };
 
   return (
     <div>
-      <h2>Agregar Usuario</h2>
+      <h2>Formulario de Usuario</h2>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Agregar un nuevo usuario</legend>
-          {dataToUpdate && (
-            <input type="hidden" name="id" value={dataToUpdate.id} />
-          )}
           <Input
             name="nombre"
             label="Nombre"
@@ -124,7 +111,6 @@ function Form({ createData, updateData, dataToUpdate, setDataToUpdate }) {
             </button>
           </div>
         </fieldset>
-        {submitted && <Message {...message} />}
       </form>
     </div>
   );
@@ -133,8 +119,7 @@ function Form({ createData, updateData, dataToUpdate, setDataToUpdate }) {
 Form.propTypes = {
   createData: PropTypes.func.isRequired,
   updateData: PropTypes.func.isRequired,
-  dataToUpdate: PropTypes.object,
-  setDataToUpdate: PropTypes.func,
+  setMessage: PropTypes.func.isRequired,
 };
 
 export default Form;
