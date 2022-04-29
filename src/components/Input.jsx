@@ -45,9 +45,9 @@ function Input({
   }
 
   return (
-    <div className="row mb-3">
+    <div className="mb-3">
       <label htmlFor={name} className="form-label">
-        {label}:{" "}
+        {label}:
       </label>
       {inputElement}
     </div>

@@ -17,10 +17,6 @@ function App() {
     });
   };
   const deleteData = id => {
-    /* let sureToDelete = window.confirm(
-      `¿Está seguro de que desea eliminar el usuario con id ${id}?`,
-    ); */
-
     let updatedData = users.filter(user => user.id !== id);
 
     setUsers(updatedData);
@@ -28,20 +24,6 @@ function App() {
       type: "success",
       msg: "Datos eliminados satisfactoriamente",
     });
-    /* if (sureToDelete) {
-      let updatedData = users.filter(user => user.id !== id);
-
-      setUsers(updatedData);
-      setMessage({
-        type: "success",
-        msg: "Datos eliminados satisfactoriamente",
-      });
-    } else {
-      setMessage({
-        type: "error",
-        msg: "No se pudo eliminar el dato",
-      });
-    } */
 
     setTimeout(() => {
       setMessage(null);

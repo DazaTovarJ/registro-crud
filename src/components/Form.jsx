@@ -24,28 +24,8 @@ function Form({ createData, updateData, setMessage }) {
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (!formData.nombre) {
-      setMessage({ type: "danger", msg: "El nombre es requerido" });
-      return;
-    }
-
-    if (!formData.apellido) {
-      setMessage({ type: "danger", msg: "El apellido es requerido" });
-      return;
-    }
-
-    if (!formData.correo) {
-      setMessage({ type: "danger", msg: "El correo es requerido" });
-      return;
-    }
-
-    if (!formData.curso) {
-      setMessage({ type: "danger", msg: "El curso es requerido" });
-      return;
-    }
-
-    if (!formData.tipo) {
-      setMessage({ type: "danger", msg: "El tipo de usuario es requerido" });
+    if (!e.target.checkValidity()) {
+      setMessage({ type: "danger", msg: "Campos requeridos" });
       return;
     }
 
@@ -72,6 +52,7 @@ function Form({ createData, updateData, setMessage }) {
             placeholder="Ingresa tu nombre"
             value={formData.nombre}
             handleChange={handleChange}
+            constraints={{ required: true }}
           />
           <Input
             name="apellido"
@@ -79,6 +60,7 @@ function Form({ createData, updateData, setMessage }) {
             placeholder="Ingresa tu apellido"
             value={formData.apellido}
             handleChange={handleChange}
+            constraints={{ required: true }}
           />
           <Input
             type="email"
@@ -87,6 +69,11 @@ function Form({ createData, updateData, setMessage }) {
             placeholder="Ingresa tu correo"
             value={formData.correo}
             handleChange={handleChange}
+            constraints={{
+              pattern:
+                "[a-zA-Z0-9!#$%&'*_+-]([.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$/()=?¿!.,:;]|d)+[a-zA-Z0-9][.][a-zA-Z]{2,4}([.][a-zA-Z]{2})?",
+              required: true,
+            }}
           />
           <Input
             name="curso"
@@ -94,6 +81,7 @@ function Form({ createData, updateData, setMessage }) {
             placeholder="Ingresa tu curso"
             value={formData.curso}
             handleChange={handleChange}
+            constraints={{ required: true }}
           />
           <Input
             type="select"
@@ -102,6 +90,7 @@ function Form({ createData, updateData, setMessage }) {
             label="Tipo de usuario"
             handleChange={handleChange}
             data={["Profesor", "Estudiante"]}
+            constraints={{ required: true }}
           />
           <div className="mb-3">
             <button type="submit" className="me-2 btn btn-success">
