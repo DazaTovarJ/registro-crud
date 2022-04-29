@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function Modal({ type, msg, handleClick }) {
   return (
@@ -39,5 +40,11 @@ function Modal({ type, msg, handleClick }) {
     </div>
   );
 }
+
+Modal.propTypes = {
+  type: PropTypes.string,
+  msg: PropTypes.string.isRequired,
+  handleClick: PropTypes.func,
+};
 
 export default Modal;
