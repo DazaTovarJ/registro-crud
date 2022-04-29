@@ -25,27 +25,27 @@ function Form({ createData, updateData, setMessage }) {
     e.preventDefault();
 
     if (!formData.nombre) {
-      setMessage({ type: "error", msg: "El nombre es requerido" });
+      setMessage({ type: "danger", msg: "El nombre es requerido" });
       return;
     }
 
     if (!formData.apellido) {
-      setMessage({ type: "error", msg: "El apellido es requerido" });
+      setMessage({ type: "danger", msg: "El apellido es requerido" });
       return;
     }
 
     if (!formData.correo) {
-      setMessage({ type: "error", msg: "El correo es requerido" });
+      setMessage({ type: "danger", msg: "El correo es requerido" });
       return;
     }
 
     if (!formData.curso) {
-      setMessage({ type: "error", msg: "El curso es requerido" });
+      setMessage({ type: "danger", msg: "El curso es requerido" });
       return;
     }
 
     if (!formData.tipo) {
-      setMessage({ type: "error", msg: "El tipo de usuario es requerido" });
+      setMessage({ type: "danger", msg: "El tipo de usuario es requerido" });
       return;
     }
 
@@ -62,11 +62,10 @@ function Form({ createData, updateData, setMessage }) {
   };
 
   return (
-    <div>
+    <div className="col-sm-12 col-lg-3">
       <h2>Formulario de Usuario</h2>
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <legend>Agregar un nuevo usuario</legend>
           <Input
             name="nombre"
             label="Nombre"
@@ -104,9 +103,15 @@ function Form({ createData, updateData, setMessage }) {
             handleChange={handleChange}
             data={["Profesor", "Estudiante"]}
           />
-          <div>
-            <button type="submit">Registrar</button>
-            <button type="reset" onClick={handleReset}>
+          <div className="mb-3">
+            <button type="submit" className="me-2 btn btn-success">
+              Registrar
+            </button>
+            <button
+              type="reset"
+              className="btn btn-secondary"
+              onClick={handleReset}
+            >
               Limpiar
             </button>
           </div>

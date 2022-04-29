@@ -15,7 +15,13 @@ function Input({
 
   if (type === "select") {
     inputElement = (
-      <select name={name} id={name} value={value} onChange={handleChange}>
+      <select
+        name={name}
+        value={value}
+        className="form-select"
+        id={name}
+        onChange={handleChange}
+      >
         <option value="">Seleccione...</option>
         {data.map((item, i) => (
           <option key={i} value={item}>
@@ -30,6 +36,7 @@ function Input({
         type={type}
         name={name}
         value={value}
+        className="form-control"
         placeholder={placeholder}
         onChange={handleChange}
         {...constraints}
@@ -38,8 +45,10 @@ function Input({
   }
 
   return (
-    <div>
-      <label htmlFor={name}>{label}: </label>
+    <div className="row mb-3">
+      <label htmlFor={name} className="form-label">
+        {label}:{" "}
+      </label>
       {inputElement}
     </div>
   );

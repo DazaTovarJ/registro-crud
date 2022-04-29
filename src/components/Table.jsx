@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import TableRow from "./TableRow";
+import Modal from "./Modal";
 
 function Table({ data, deleteData }) {
+  const [modal, setModal] = useState(null);
+
   let renderData = null;
+
   if (data.length === 0) {
     renderData = <p>No hay datos para mostrar. Crea un registro</p>;
   } else {
     renderData = (
-      <table>
+      <table className="table table-striped table-hover">
         <thead>
           <tr>
             <th>Id</th>
@@ -22,16 +26,22 @@ function Table({ data, deleteData }) {
         </thead>
         <tbody>
           {data.map(user => (
-            <TableRow key={user.id} user={user} deleteData={deleteData} />
+            <TableRow
+              key={user.id}
+              user={user}
+              deleteData={deleteData}
+              setModal={setModal}
+            />
           ))}
         </tbody>
       </table>
     );
   }
   return (
-    <div>
+    <div className="col-sm-12 col-lg-9">
       <h2>Información de usuario</h2>
-      {renderData}
+      <div className="table-responsive">{renderData}</div>
+      {data.length > 0 && <Modal {...modal} />}
     </div>
   );
 }

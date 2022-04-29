@@ -17,11 +17,18 @@ function App() {
     });
   };
   const deleteData = id => {
-    let sureToDelete = window.confirm(
+    /* let sureToDelete = window.confirm(
       `¿Está seguro de que desea eliminar el usuario con id ${id}?`,
-    );
+    ); */
 
-    if (sureToDelete) {
+    let updatedData = users.filter(user => user.id !== id);
+
+    setUsers(updatedData);
+    setMessage({
+      type: "success",
+      msg: "Datos eliminados satisfactoriamente",
+    });
+    /* if (sureToDelete) {
       let updatedData = users.filter(user => user.id !== id);
 
       setUsers(updatedData);
@@ -34,7 +41,7 @@ function App() {
         type: "error",
         msg: "No se pudo eliminar el dato",
       });
-    }
+    } */
 
     setTimeout(() => {
       setMessage(null);
@@ -42,16 +49,22 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>Aplicación de Registro de Usuarios</h1>
-      {message && <Message {...message} />}
-      <Form
-        createData={createData}
-        updateData={deleteData}
-        setMessage={setMessage}
-      />
-      <Table data={users} deleteData={deleteData} />
-    </div>
+    <>
+      <header className="text-center py-2 bg-primary text-white mb-3">
+        <h1>Aplicación de Registro de Usuarios</h1>
+      </header>
+      <div className="container">
+        {message && <Message setMessage={setMessage} {...message} />}
+        <div className="row">
+          <Form
+            createData={createData}
+            updateData={deleteData}
+            setMessage={setMessage}
+          />
+          <Table data={users} deleteData={deleteData} />
+        </div>
+      </div>
+    </>
   );
 }
 
