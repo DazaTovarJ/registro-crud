@@ -21,6 +21,7 @@ function Input({
         className="form-select"
         id={name}
         onChange={handleChange}
+        {...constraints}
       >
         <option value="">Seleccione...</option>
         {data.map((item, i) => (
